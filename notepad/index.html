@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Notepad</title>
+</head>
+
+<body>
+  <header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+                viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">Notepad</span>
+        </a>
+        <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+            <a class="mr-5 hover:text-gray-900">First Link</a>
+            <a class="mr-5 hover:text-gray-900">Second Link</a>
+            <a class="mr-5 hover:text-gray-900">Third Link</a>
+            <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+        </nav>
+        <button
+            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+        </button>
+    </div>
+  </header>
+  
+  <div class="prodiv">
+    <div class="container1">
+      <nav>
+        <ul>
+          <li>first note</li>
+          <li>first note</li>
+          <li>first note</li>
+          <li>first note</li>
+        </ul>
+      </nav>
+    </div>
+    
+    
+    <div class="container2">
+      <nav>
+      <ul>
+        <li><button class="font-man" onclick="italic()"><i class="fa-solid fa-italic"></i></button></li>
+        <li><button class="font-man" onclick="bold()"><i class="fa-solid fa-bold"></i></button></li>
+        <li><button class="font-man" onclick="underline()"><i class="fa-solid fa-underline"></i></button></li>
+        <li><button class="font-man" onclick="copy()"><i class="fa-regular fa-copy"></i></button></li>
+
+        <li class="new-items"><button class="font-man"><i class="fa-regular fa-plus"></i></button></li>
+      </ul>  
+      </nav>
+         <div class="textarea" id="textarea"></div>
+    </div>
+    
+    
+  </div>
+</body>
+<script>
+  document.querySelector(".textarea").contentEditable = true;
+
+  function bold(){
+    var text  = document.getSelection();
+    document.execCommand('bold');
+  }
+
+  function italic(){
+    var text  = document.getSelection();
+    document.execCommand('italic');
+  }
+
+  function underline(){
+    var text  = document.getSelection();
+    document.execCommand('underline');
+  }
+
+  function save(){
+    
+  }
+
+  function copy(){
+  const copyText = document.getElementById("textarea").textContent;
+  const textArea = document.createElement('textarea');
+  textArea.style.position = 'absolute';
+  textArea.style.left = '-100%';
+  textArea.textContent = copyText;
+  document.body.append(textArea);
+  textArea.select();
+  textArea.setSelectionRange(0, 99999); /*For mobile devices*/
+  document.execCommand("copy");
+  document.getElementById("copy").innerText = "Copied";
+  textArea.remove();
+  setTimeout(function(){ document.getElementById("copy").innerText = "Copy"; }, 10000);
+}
+
+</script>
+</html>
